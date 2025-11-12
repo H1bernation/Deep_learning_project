@@ -1,0 +1,2 @@
+Colab에서 GitHub 연동 테스트 성공!
+Issue #4 완료
