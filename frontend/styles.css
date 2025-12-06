@@ -1,0 +1,538 @@
+/* ==================== [1] 기본 CSS  ==================== */
+
+/* -------- Global Reset -------- */
+
+@font-face {
+    font-family: 'MaruBuri';
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-ExtraLight.woff2);
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aritaburi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+body, .stApp {
+    background: radial-gradient(circle at top left, #0C3A42, #001D23) !important;
+    font-family: 'MaruBuri';
+    color: white;
+    overflow: hidden !important; 
+    height: 100vh !important;
+}
+
+.main .block-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    height: 100vh !important;  
+    overflow: hidden !important;
+}
+
+header, #MainMenu, footer {
+    display: none !important;
+}
+
+.main {
+    overflow: hidden !important;
+}
+
+/* -------- Column 설정 -------- */
+
+[data-testid="stVerticalBlock"] > [data-testid="column"] {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+}
+
+
+div[data-testid="column"] {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    
+    height: auto !important; 
+    min-height: 550px; /* 최소 높이만 확보 */
+}
+
+
+/* -------- Left Image/Video -------- */
+
+
+.image-container {
+    width: 150%;
+    height: 74vh;  
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;  
+    overflow: hidden;
+    position: relative; 
+    margin-left: -15%;
+}
+
+.background-video {
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    border-radius: 0; 
+    pointer-events: none;
+}
+
+/* 오른쪽 그라데이션 오버레이 */
+.image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%; 
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(0,255,255,0) 0%,
+        rgba(5, 36, 43, 0.4) 25%,      
+        rgba(5, 36, 43, 0.6) 50%,
+        rgba(5, 36, 43, 0.8) 75%,      
+        rgba(5, 39, 45, 1) 100%     
+    );
+    pointer-events: none;
+}
+/* -------- Right Content -------- */
+
+.right-content {
+    text-align: center;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+    align-items: center;  
+}
+
+
+.logo-text {
+    font-family: 'Aritaburi';
+    font-size: 100px;
+    font-weight: 300;
+    color: #eaffff;
+    letter-spacing: 6px;
+    text-shadow: 0 0 28px rgba(0,255,255,0.5);
+    margin-bottom: -10px;
+    margin-left: 20%;
+}
+
+.tagline {
+    font-family: 'MaruBuri';
+    font-size: 20px;
+    color: #c9ffff;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    margin-left: 21%;
+}
+
+/* -------- START Button -------- */
+
+.neon-btn {
+    font-family: 'MaruBuri';
+    display: inline-block;
+    padding: 16px 50px;
+    font-size: 40px;
+    border-radius: 40px;
+    color: white;
+    border: 2px solid #00eaff;
+    background: rgba(0, 15, 17, 0.25);
+    box-shadow: 0 0 18px #00eaff, inset 0 0 12px rgba(0,255,255,0.3);
+    transition: 0.25s ease;
+    cursor: pointer;
+    margin: 20px 0 50px 0;
+}
+
+.neon-btn:hover {
+    box-shadow: 0 0 32px #00eaff, inset 0 0 20px rgba(0,255,255,0.65);
+    transform: translateY(-2px);
+}
+
+
+/* -------- Feature Grid -------- */
+
+.feature-grid {
+    font-family: 'Aritaburi';
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 400px;
+    margin: 20px auto;
+    margin-left: 20%;
+}
+
+.feature-box {
+    background: rgba(0,255,255,0.05);
+    border-radius: 14px;
+    padding: 22px;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(0,255,255,0.15);
+    transition: 0.25s;
+}
+
+.feature-box:hover {
+    box-shadow: 0 0 20px rgba(0,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+.feature-box p {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+    color: #d0ffff;
+    line-height: 1.4;
+}
+
+.icon {
+    width: 36px;
+    height: 36px;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 6px rgba(0,255,255,0.4));
+}
+
+.product-card {
+    background: rgba(0, 255, 255, 0.05) !important;
+    border: 1px solid rgba(0, 234, 255, 0.3) !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    margin: 10px 0 !important;
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.15) !important;
+}
+
+.product-name {
+    font-size: 14px !important;
+    font-weight: bold !important;
+    margin: 10px 0 5px 0 !important;
+    color: white !important;
+}
+
+.product-brand {
+    font-size: 12px !important;
+    color: #cccccc !important;
+}
+
+.product-price {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #00eaff !important;
+    margin: 5px 0 !important;
+}
+
+.product-tag {
+    display: inline-block !important;
+    background-color: rgba(0, 234, 255, 0.2) !important;
+    padding: 3px 8px !important;
+    border-radius: 5px !important;
+    font-size: 11px !important;
+    margin: 5px 2px !important;
+    color: white !important;
+    border: 1px solid rgba(0, 234, 255, 0.3) !important;
+}
+
+
+/* 기본 버튼 스타일 */
+button[data-testid="stBaseButton-secondary"] {
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    padding: 10px 30px !important;
+    width: auto !important;
+    min-width: 200px !important;
+    font-family: 'MaruBuri' !important;
+    margin : 10px !important;
+    margin-left : 220px !important;
+}
+
+/* 버튼 안의 p 태그 (텍스트) */
+button[data-testid="stBaseButton-secondary"] p {
+    font-size: 25px !important;
+    margin: 0 !important;
+    color: white !important;
+    white-space: nowrap !important;
+}
+
+button[kind="secondary"]:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+
+.stFileUploader button {
+    background: white !important;
+    border: 1px solid #ddd !important;
+    color: black !important;
+    box-shadow: none !important;
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    margin-left : -20%;
+}
+
+/* 1. 라디오 버튼 (입력 방식 선택) */
+[data-testid="stRadio"] > div {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+[data-testid="stRadio"] label p {
+    color: white !important;
+    font-family: 'MaruBuri';
+    font-size: 16px !important;
+}
+
+/* 2. 파일 업로더 디자인 */
+[data-testid="stFileUploader"] section {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border: 1px dashed rgba(0, 234, 255, 0.3) !important;
+}
+[data-testid="stFileUploader"] button {
+    background: transparent !important;
+    border: 1px solid #00eaff !important;
+    color: #00eaff !important;
+}
+
+/* 업로드 전 빈 박스 스타일 (app.py의 empty-upload-box 클래스) */
+.empty-upload-box {
+    height: 200px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    border: 2px dashed rgba(255,255,255,0.1); 
+    border-radius: 10px; 
+    margin-top: 20px; 
+    color: #888;
+    background: rgba(0,0,0,0.2);
+}
+
+/* 이미지 미리보기 박스 */
+.preview-box {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #00eaff;
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.2);
+}
+
+/* 3. 셀렉트 박스 (피부 타입) */
+.stSelectbox label {
+    color: #00eaff !important;
+    font-family: 'Aritaburi';
+    font-size: 20px !important;
+    margin-bottom: 10px;
+}
+div[data-baseweb="select"] > div {
+    background-color: #ffffff !important;      
+    border: 1px solid #ddd !important;        
+    color: #333 !important;                   
+    font-family: 'MaruBuri', sans-serif !important; 
+    border-radius: 10px !important;            
+
+}
+
+div[data-baseweb="select"] > div * {
+    color: #333 !important; 
+}
+
+/* 4. 슬라이더 (예산) */
+.stSlider label {
+    color: #00eaff !important;
+    font-family: 'Aritaburi';
+    font-size: 14px !important; 
+    display: none; 
+}
+.stSlider [data-testid="stThumb"] {
+    background-color: #00eaff !important; 
+    border: 2px solid white !important;
+}
+.stSlider [data-testid="stTickBar"] {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+
+
+div.stButton > button[kind="primary"] {
+    width: 100% !important;
+    margin: 0 !important;
+    
+    /* 타이틀과 동일한 그라데이션 배경 */
+    background: linear-gradient(90deg, #008c99 0%, #00eaff 100%) !important;
+    
+    border: none !important;
+    border-radius: 12px !important;
+    
+    /* 텍스트 스타일 */
+    font-family: 'Aritaburi' !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    padding: 15px 0 !important;
+    
+    /* 그림자: 은은한 청록색 빛 */
+    box-shadow: 0 4px 15px rgba(0, 234, 255, 0.3) !important;
+    transition: 0.3s !important;
+}
+
+
+div.stButton > button[kind="primary"] p {
+    color: white !important;
+    font-size: 20px !important;
+}
+
+/* 호버 효과: 살짝 떠오르면서 그림자 진하게 */
+div.stButton > button[kind="primary"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 234, 255, 0.5) !important;
+    opacity: 0.95 !important;
+}
+
+
+/* 1. 분석 결과 카드  */
+div.analysis-card {
+    background-color: #ffffff !important;  /* 흰색 배경 강제 적용 */
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 20px !important;
+    padding: 30px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+    margin-bottom: 20px !important;
+    color: #333 !important;
+    opacity: 1 !important; /* 투명도 제거 */
+}
+
+/* 2. 결과 타이틀 (검정색으로 변경) */
+h1.result-title {
+    font-family: 'Aritaburi' !important;
+    background: none !important;
+    color: #222 !important;  /* 글자색 검정 */
+    -webkit-text-fill-color: initial !important;
+    font-size: 42px !important;
+    margin-bottom: 20px !important;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+}
+
+/* 3. 제품 카드 (흰색 박스 만들기) */
+.product-card {
+    background: #ffffff !important; /* 흰색 배경 */
+    border: 1px solid #eee !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    margin: 10px 0 15px 0 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02) !important;
+}
+
+.product-name {
+    color: #222 !important; /* 검정 */
+    font-size: 16px !important;
+    font-weight: bold !important;
+    margin: 10px 0 5px 0 !important;
+}
+
+.product-brand {
+    color: #888 !important;
+    font-size: 12px !important;
+}
+
+.product-price {
+    color: #333 !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+}
+
+.product-tag {
+    background-color: #f3f4f6 !important;
+    color: #555 !important;
+    border: 1px solid #e5e7eb !important;
+    display: inline-block !important;
+    padding: 4px 10px !important;
+    border-radius: 5px !important;
+    font-size: 11px !important;
+}
+
+/* 4. 챗봇 컨테이너 (흰색 배경) */
+.chat-container-embedded {
+    background: #ffffff !important; /* 흰색 배경 */
+    border-radius: 20px 20px 0 0 !important;
+    border: 1px solid #e0e0e0 !important;
+    border-bottom: none !important;
+    margin-top: 20px !important;
+}
+
+/* 5. 챗봇 헤더 (회색 배경) */
+.chat-header {
+    background: #f8f9fa !important;
+    color: #333 !important;
+    padding: 20px !important;
+    font-family: 'Aritaburi' !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    border-bottom: 1px solid #eee !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.bot-icon {
+    background: #e9ecef !important;
+    color: #333 !important;
+    width: 35px !important;
+    height: 35px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    font-size: 24px !important;
+    margin-right: 10px !important;
+}
+
+/* 6. 입력창 영역 (흰색) */
+.chat-input-area {
+    background: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+    border-top: 1px solid #eee !important;
+    border-radius: 0 0 20px 20px !important;
+    padding: 20px !important;
+}
+
+.chat-input-area [data-testid="stTextInput"] input {
+    background-color: #f8f9fa !important;
+    color: #333 !important;
+    border: 1px solid #ddd !important;
+    border-radius: 20px !important;
+}
+
+.chat-input-area button {
+    background-color: #333 !important;
+    color: white !important;
+    border-radius: 20px !important;
+    border: none !important;
+}
+
+/* 말풍선 */
+.chat-bubble-user {
+    background-color: #333 !important;
+    color: white !important;
+    padding: 10px 15px !important;
+    border-radius: 15px 15px 0 15px !important;
+    float: right !important;
+    clear: both !important;
+    font-family: 'MaruBuri' !important;
+}
+
+.chat-bubble-bot {
+    background-color: #f1f3f5 !important;
+    color: #333 !important;
+    padding: 10px 15px !important;
+    border-radius: 15px 15px 15px 0 !important;
+    float: left !important;
+    clear: both !important;
+    font-family: 'MaruBuri' !important;
+}

@@ -1,0 +1,13 @@
+# Streamlit
+streamlit==1.51.0
+
+# Visualization
+plotly==6.5.0
+
+# HTTP & Image
+requests==2.31.0
+Pillow==10.1.0
+
+# Data Processing
+numpy==1.26.4
+pandas==2.3.3

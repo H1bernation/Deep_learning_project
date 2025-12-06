@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: skin-analysis-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/app:/app/app
+    depends_on:
+      db:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+    environment:
+      - DATABASE_URL=postgresql://skincare_user:skincare_password@db:5432/skincare_db
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: skin-analysis-frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: skincare-postgres
+    environment:
+      POSTGRES_DB: skincare_db
+      POSTGRES_USER: skincare_user
+      POSTGRES_PASSWORD: skincare_password
+    ports:
+      - "5433:5432"  # 외부 5433, 내부 5432 (충돌 방지)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U skincare_user -d skincare_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant
+    container_name: skincare-qdrant
+    ports:
+      - "6334:6333"  # 외부 6334, 내부 6333 (충돌 방지)
+      - "6335:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  qdrant_data:
