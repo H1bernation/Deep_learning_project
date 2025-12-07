@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="Skin Analysis API")
+app = FastAPI(title="CLORO Skin Analysis API")
 
 # CORS 설정 (프론트엔드 연결용)
 app.add_middleware(

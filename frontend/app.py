@@ -8,7 +8,7 @@ import io
 
 # ==================== 페이지 설정 ====================
 st.set_page_config(
-    page_title="CROLO : AI 스킨케어 서비스",
+    page_title="CLORO : AI 스킨케어 서비스",
     page_icon="🧴",
     layout="wide"
 )
@@ -236,7 +236,7 @@ def landing_page():
         
         st.markdown("""
         <div>
-            <div class="logo-text">CROLO</div>
+            <div class="logo-text">CLORO</div>
             <div class="tagline">AI 피부 분석 기반 스킨케어 추천 서비스</div>
         </div>
         """, unsafe_allow_html=True)
@@ -700,7 +700,7 @@ def result_page():
                 <div class="chat-header">
                     <div style="display:flex; align-items:center;">
                         <div class="bot-icon">🤖</div>
-                        <span>CROLO 스킨 어시스턴트</span>
+                        <span>CLORO 스킨 어시스턴트</span>
                     </div>
                 </div>
             """, unsafe_allow_html=True)
@@ -714,7 +714,7 @@ def result_page():
                     <div class="bot-container">
                         <div class="bot-profile-icon">🤖</div>
                         <div class="bot-content-wrapper">
-                            <div class="bot-name">CROLO</div>
+                            <div class="bot-name">CLORO</div>
                             <div class="bot-bubble">안녕하세요! 피부 분석 결과에 대해 궁금한 점을 물어보세요.</div>
                         </div>
                     </div>
@@ -732,7 +732,7 @@ def result_page():
                         <div class="bot-container">
                             <div class="bot-profile-icon">🤖</div>
                             <div class="bot-content-wrapper">
-                                <div class="bot-name">CROLO</div>
+                                <div class="bot-name">CLORO</div>
                                 <div class="bot-bubble">{chat['content']}</div>
                             </div>
                         </div>
@@ -761,7 +761,7 @@ def result_page():
                     <div class="bot-container">
                         <div class="bot-profile-icon">🤖</div>
                         <div class="bot-content-wrapper">
-                            <div class="bot-name">CROLO</div>
+                            <div class="bot-name">CLORO</div>
                             <div class="bot-bubble">
                                 <div class="typing-indicator">
                                     <div class="typing-dot"></div>
