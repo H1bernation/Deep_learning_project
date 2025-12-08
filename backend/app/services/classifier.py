@@ -54,7 +54,7 @@ class SkinClassificationService:
         
         # State dict 로드
         self.model.load_state_dict(
-            torch.load('/app/models/classification.pt', map_location=self.device)
+            torch.load('/app/models/classification.pth', map_location=self.device)
         )
         self.model.eval()
         

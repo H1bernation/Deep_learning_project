@@ -17,6 +17,7 @@ services:
       - DATABASE_URL=postgresql://skincare_user:skincare_password@db:5432/skincare_db
       - QDRANT_HOST=qdrant
       - QDRANT_PORT=6333
+      - OPENAI_API_KEY=${OPENAI_API_KEY} 
     restart: unless-stopped
 
   frontend:
