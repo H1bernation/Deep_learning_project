@@ -216,7 +216,10 @@ cd Deep_learning_project
 
 Google Drive: https://drive.google.com/drive/folders/1MaVcJALQvaXCPnRKGwvwePX7jlW1aT4K?usp=drive_link
 
-다운로드 후 아래 경로에 배치:
+다운로드 후 `backend/models/` 폴더 생성하고 아래 파일 배치:
+```bash
+mkdir backend/models
+```
 ```
 backend/models/
 ├── detection.pt           # YOLOv8 얼굴 부위 검출 모델
