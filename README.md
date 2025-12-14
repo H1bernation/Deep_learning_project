@@ -16,33 +16,33 @@
 
 ---
 
-## 📋 목차
+## 목차
 
-1. [프로젝트 개요](#-프로젝트-개요)
-2. [시스템 아키텍처](#-시스템-아키텍처)
-3. [주요 기능](#-주요-기능)
-4. [기술 스택](#-기술-스택)
-5. [성능 지표](#-성능-지표)
-6. [설치 및 실행](#-설치-및-실행)
-7. [프로젝트 구조](#-프로젝트-구조)
-8. [API 문서](#-api-문서)
-9. [개발 과정](#-개발-과정)
-10. [참고 문헌](#-참고-문헌)
-
----
-
-## 🎯 프로젝트 개요
-
-**CLORO**는 컴퓨터 비전과 자연어 처리 기술을 결합하여 사용자의 피부 상태를 분석하고, 맞춤형 화장품을 추천하는 AI 기반 스킨케어 서비스입니다.
-
-### 핵심 가치
-- **정확한 분석**: YOLOv8 + Ensemble CNN으로 얼굴 7개 부위, 4개 증상 분석
-- **개인화 추천**: 피부 타입, 예산, 증상을 고려한 3단계 하이브리드 추천
-- **대화형 상담**: RAG 기반 챗봇으로 실시간 피부 관리 상담
+1. [프로젝트 개요](#프로젝트-개요)
+2. [시스템 아키텍처](#시스템-아키텍처)
+3. [주요 기능](#주요-기능)
+4. [기술 스택](#기술-스택)
+5. [성능 지표](#성능-지표)
+6. [설치 및 실행](#설치-및-실행)
+7. [프로젝트 구조](#프로젝트-구조)
+8. [API 문서](#api-문서)
+9. [개발 과정](#개발-과정)
+10. [참고 문헌](#참고-문헌)
 
 ---
 
-## 🏗️ 시스템 아키텍처
+## 프로젝트 개요
+
+CLORO는 컴퓨터 비전과 자연어 처리 기술을 결합하여 사용자의 피부 상태를 분석하고, 맞춤형 화장품을 추천하는 스킨케어 서비스다.
+
+- YOLOv8과 앙상블 CNN으로 얼굴 7개 부위, 4개 증상을 분석한다.
+- 피부 타입, 예산, 증상을 고려한 3단계 하이브리드 추천 시스템을 사용한다.
+- RAG 기반 챗봇으로 실시간 피부 관리 상담을 제공한다.
+
+---
+
+## 시스템 아키텍처
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                         Frontend                             │
@@ -69,6 +69,7 @@
 ```
 
 ### 분석 파이프라인
+
 ```
 Input Image
     ↓
@@ -93,31 +94,37 @@ Output: 분석 결과 + 추천 제품
 
 ---
 
-## ✨ 주요 기능
+## 주요 기능
 
-### 1. 피부 분석 (Skin Analysis)
-- **얼굴 부위 검출**: YOLOv8 기반 7개 영역 자동 감지
-- **증상 분류**: ViT + EfficientNetV2 앙상블로 4개 증상 정밀 분석
-- **시각화**: 레이더 차트로 증상 심각도 직관적 표시
+### 1. 피부 분석
 
-### 2. 제품 추천 (Product Recommendation)
-- **3단계 하이브리드 시스템**:
-  1. **Hard Filtering**: 피부 타입, 예산, 카테고리 균형 필터링
-  2. **Symptom-Weighted Matching**: 증상 심각도 × 제품 효과 가중 매칭
-  3. **Semantic Similarity**: Qdrant 벡터 DB로 리뷰 의미 유사도 검색
-- **최종 점수**: `F = 0.4×증상매칭 + 0.3×의미유사도 + 0.2×리뷰평점 + 0.1×가격효율`
-- **카테고리 균형**: 토너/로션/세럼 각 3개씩 추천
+- YOLOv8 기반 얼굴 7개 영역 자동 감지
+- ViT + EfficientNetV2 앙상블로 4개 증상 분류
+- 레이더 차트로 증상 심각도 시각화
 
-### 3. AI 상담 챗봇 (RAG Chatbot)
-- **컨텍스트 기반 답변**: 분석 결과 + 제품 정보 + 유사 리뷰 활용
-- **실시간 대화**: GPT-4o-mini 기반 자연스러운 상담
-- **벡터 검색**: Qdrant로 관련 리뷰 빠른 검색
+### 2. 제품 추천
+
+3단계 하이브리드 추천 시스템:
+1. Hard Filtering: 피부 타입, 예산, 카테고리 필터링
+2. Symptom-Weighted Matching: 증상 심각도 × 제품 효과 매칭
+3. Semantic Similarity: Qdrant 벡터 DB로 리뷰 의미 유사도 검색
+
+최종 점수 산출: `F = 0.4×증상매칭 + 0.3×의미유사도 + 0.2×리뷰평점 + 0.1×가격효율`
+
+토너/로션/세럼 각 3개씩 균형 있게 추천한다.
+
+### 3. AI 상담 챗봇
+
+- 분석 결과, 제품 정보, 유사 리뷰를 컨텍스트로 활용
+- GPT-4o-mini 기반 자연어 상담
+- Qdrant로 관련 리뷰 검색
 
 ---
 
-## 🛠️ 기술 스택
+## 기술 스택
 
 ### Backend
+
 | 카테고리 | 기술 | 버전 | 용도 |
 |---------|------|------|------|
 | Framework | FastAPI | 0.104.1 | REST API 서버 |
@@ -130,6 +137,7 @@ Output: 분석 결과 + 추천 제품
 | AI API | OpenAI | - | GPT-4o-mini 챗봇 |
 
 ### Frontend
+
 | 카테고리 | 기술 | 버전 | 용도 |
 |---------|------|------|------|
 | Framework | Streamlit | 1.51.0 | 웹 UI |
@@ -137,13 +145,15 @@ Output: 분석 결과 + 추천 제품
 | HTTP | Requests | 2.31+ | API 호출 |
 
 ### Infrastructure
-- **Docker Compose**: 멀티 컨테이너 관리
+
+- Docker Compose로 멀티 컨테이너 관리
 
 ---
 
-## 📊 성능 지표
+## 성능 지표
 
 ### Detection Model (YOLOv8)
+
 ```
 Dataset: AI Hub 한국인 안면 피부 상태 측정 데이터 (13,936장)
 Classes: 7개 (이마, 미간, 눈가L, 눈가R, 볼L, 볼R, 턱)
@@ -156,6 +166,7 @@ Results:
 ```
 
 ### Classification Model (Ensemble)
+
 ```
 Dataset: AI Hub 안면 피부 상태 측정 데이터
 Symptoms: 4개 (주름, 모공, 색소침착, 탄력저하)
@@ -169,13 +180,14 @@ Model Architecture:
 Results:
 ├── Accuracy: 0.8592
 ├── F1-Score: 0.8572
-└── 목표(0.85) 대비: +0.85% 초과 달성
+└── 목표(0.85) 대비 +0.85% 초과 달성
 ```
 
 ### Recommendation System
+
 ```
 Database: Olive Young 제품 360개
-Algorithm: 3-Stage Hybrid (Hard Filtering → Symptom Matching → Semantic Search)
+Algorithm: 3-Stage Hybrid
 
 Metrics:
 ├── 평균 응답 시간: < 2초
@@ -185,23 +197,24 @@ Metrics:
 
 ---
 
-## 🚀 설치 및 실행
+## 설치 및 실행
 
 ### 사전 요구사항
 
-- **Docker Desktop** 설치 필수
-- **Git** (코드 관리)
-- **OpenAI API Key** (챗봇 기능용)
+- Docker Desktop
+- Git
+- OpenAI API Key (챗봇 기능용)
 
 ### 1. 레포지토리 클론
+
 ```bash
-git clone https://github.com/[사용자명]/CLORO.git
+git clone https://github.com/H1bernation/CLORO.git
 cd CLORO
 ```
 
 ### 2. 모델 파일 다운로드
 
-**Google Drive 링크**: https://drive.google.com/drive/folders/1MaVcJALQvaXCPnRKGwvwePX7jlW1aT4K?usp=drive_link
+Google Drive: https://drive.google.com/drive/folders/1MaVcJALQvaXCPnRKGwvwePX7jlW1aT4K?usp=drive_link
 
 다운로드 후 아래 경로에 배치:
 ```
@@ -211,24 +224,20 @@ backend/models/
 ```
 
 ### 3. 환경 변수 설정
-```bash
-# .env.example을 복사하여 .env 생성
-cp .env.example .env
 
-# .env 파일 편집하여 OpenAI API Key 입력
+```bash
+cp .env.example .env
 ```
 
-**.env 파일 내용:**
+.env 파일 편집:
 ```env
 OPENAI_API_KEY=sk-proj-여기에_실제_키_입력
 ```
 
 ### 4. Docker 컨테이너 실행
-```bash
-# 빌드 및 실행
-docker compose up -d --build
 
-# 로그 확인
+```bash
+docker compose up -d --build
 docker compose logs -f
 ```
 
@@ -241,9 +250,21 @@ docker compose logs -f
 | PostgreSQL | localhost:5433 | 데이터베이스 |
 | Qdrant | localhost:6334 | 벡터 DB 대시보드 |
 
-### 6. 서비스 종료
+### 6. 사용 방법
+
+1. http://localhost:8501 접속
+2. START 버튼 클릭
+3. 얼굴 이미지 업로드 또는 카메라 촬영
+4. 피부 타입 선택 (복합성, 지성, 건성, 민감성, 여드름성)
+5. 예산 범위 설정 (0 ~ 70,000원)
+6. 추가 요청사항 입력 (선택, 예: 촉촉한 제품, 향 없는 거)
+7. Analyze Now 버튼 클릭
+8. 분석 결과 및 추천 제품 확인
+9. 챗봇으로 추가 상담 가능
+
+### 7. 서비스 종료
+
 ```bash
-# 중지
 docker compose stop
 
 # 완전 삭제 (데이터 포함)
@@ -252,33 +273,34 @@ docker compose down -v
 
 ---
 
-## 📁 프로젝트 구조
+## 프로젝트 구조
+
 ```
 CLORO/
-├── backend/                      # FastAPI 백엔드
+├── backend/
 │   ├── app/
-│   │   ├── routes/              # API 엔드포인트
-│   │   │   ├── analysis.py      # 분석 API
-│   │   │   └── chat.py          # 챗봇 API
-│   │   ├── services/            # 비즈니스 로직
-│   │   │   ├── detector.py      # YOLOv8 Detection
-│   │   │   ├── classifier.py    # Ensemble Classification
-│   │   │   ├── analyzer.py      # 분석 통합
-│   │   │   ├── recommender.py   # 추천 시스템
-│   │   │   └── rag_service.py   # RAG 챗봇
-│   │   └── main.py              # FastAPI 앱
-│   ├── models/                   # 모델 파일
+│   │   ├── routes/
+│   │   │   ├── analysis.py
+│   │   │   └── chat.py
+│   │   ├── services/
+│   │   │   ├── detector.py
+│   │   │   ├── classifier.py
+│   │   │   ├── analyzer.py
+│   │   │   ├── recommender.py
+│   │   │   └── rag_service.py
+│   │   └── main.py
+│   ├── models/
 │   │   ├── detection.pt
 │   │   └── classification.pth
 │   ├── requirements.txt
 │   └── Dockerfile
 │
-├── frontend/                     # Streamlit 프론트엔드
+├── frontend/
 │   ├── .streamlit/
 │   │   └── config.toml
-│   ├── contents/                 # 미디어 파일
-│   ├── fonts/                    # 커스텀 폰트
-│   ├── app.py                    # 메인 UI
+│   ├── contents/
+│   ├── fonts/
+│   ├── app.py
 │   ├── styles.css
 │   ├── requirements.txt
 │   └── Dockerfile
@@ -291,11 +313,10 @@ CLORO/
 
 ---
 
-## 📚 API 문서
+## API 문서
 
-상세한 API 문서는 [Swagger UI](http://localhost:8000/docs)에서 확인하세요.
+서버 실행 후 http://localhost:8000/docs 에서 Swagger UI로 확인 가능.
 
-**주요 엔드포인트:**
 | Method | Endpoint | 설명 |
 |--------|----------|------|
 | POST | `/api/v1/analyze` | 피부 분석 |
@@ -304,7 +325,7 @@ CLORO/
 
 ---
 
-## 🔬 개발 과정
+## 개발 과정
 
 | 주차 | 내용 |
 |------|------|
@@ -316,7 +337,7 @@ CLORO/
 
 ---
 
-## 📜 참고 문헌
+## 참고 문헌
 
 - [1] Lee, J., et al. (2024). "Deep learning-based skin care product recommendation system using facial image analysis"
 - [2] Dosovitskiy, A., et al. (2021). "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale"
@@ -326,30 +347,21 @@ CLORO/
 
 ---
 
-## 👤 개발자
+## 데이터 출처
 
-**동민**
+- AI Hub 한국인 안면 피부 상태 측정 데이터: https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=71645
+- Olive Young 제품 정보 (크롤링)
+
+---
+
+## 개발자
+
 - GitHub: https://github.com/H1bernation
 - Email: hdm1023@sju.ac.kr
 - 프로젝트 기간: 2025.10 - 2025.12
 
 ---
 
-## 🙏 감사의 말
-
-- **AI Hub**: 한국인 안면 피부 상태 측정 데이터 제공
-- **Olive Young**: 제품 정보 참조
-
----
-
-## 📝 라이센스
+## 라이센스
 
 MIT License
-
----
-
-<div align="center">
-
-**⭐ 이 프로젝트가 도움이 되었다면 Star를 눌러주세요! ⭐**
-
-</div>

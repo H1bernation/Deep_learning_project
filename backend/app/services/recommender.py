@@ -124,9 +124,10 @@ class RecommendationEngine:
             input=query
         ).data[0].embedding
         
-        results = self.qdrant.query_points(
+        # query_points → search로 변경
+        results = self.qdrant.search(
             collection_name="product_reviews",
-            query=embedding,
+            query_vector=embedding,  # query → query_vector
             query_filter=Filter(
                 must=[
                     FieldCondition(
@@ -138,7 +139,7 @@ class RecommendationEngine:
             limit=len(candidates)
         )
         
-        return results.points
+        return results  
     
     def _calculate_final_score(self, product):
         review_score = (

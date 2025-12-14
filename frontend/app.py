@@ -87,7 +87,8 @@ def call_backend_api(image_file, user_profile):
         data = {
             'skin_type': user_profile['skin_type'],
             'budget_min': user_profile['budget_min'],
-            'budget_max': user_profile['budget_max']
+            'budget_max': user_profile['budget_max'],
+            'query': user_profile.get('query')
         }
         
         response = requests.post(url, files=files, data=data, timeout=60)
@@ -237,7 +238,7 @@ def landing_page():
         st.markdown("""
         <div>
             <div class="logo-text">CLORO</div>
-            <div class="tagline">AI 피부 분석 기반 스킨케어 추천 서비스</div>
+            <div class="tagline">AI 피부 분석 기반 화장품 추천 서비스</div>
         </div>
         """, unsafe_allow_html=True)
         
@@ -464,8 +465,10 @@ def input_page():
         st.session_state.user_profile['budget_min'] = budget[0]
         st.session_state.user_profile['budget_max'] = budget[1]
         
-        st.markdown("<br><br>", unsafe_allow_html=True)
-        
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown('<div class="section-header">💬 Additional Request</div>', unsafe_allow_html=True)
+        query = st.text_input("추가 요청사항 (선택)", placeholder="예: 촉촉한 제품, 여드름 피부, 자극 적은 거")
+        st.session_state.user_profile['query'] = query if query else None
         # 분석 버튼
         if st.button("🔍 Analyze Now", use_container_width=True, type="primary"):
             if st.session_state.uploaded_image:
