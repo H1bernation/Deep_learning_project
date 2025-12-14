@@ -208,8 +208,8 @@ Metrics:
 ### 1. 레포지토리 클론
 
 ```bash
-git clone https://github.com/H1bernation/CLORO.git
-cd CLORO
+git clone https://github.com/H1bernation/Deep_learning_project.git
+cd Deep_learning_project
 ```
 
 ### 2. 모델 파일 다운로드

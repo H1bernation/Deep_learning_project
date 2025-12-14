@@ -108,7 +108,7 @@ except:
 qdrant_client.create_collection(
     collection_name="product_reviews",
     vectors_config=VectorParams(size=1536, distance=Distance.COSINE)
-
+)
 # [3] 데이터 업로드 (PostgreSQL + Qdrant)
 
 print(f"[3/4] 데이터 업로드 시작...")
