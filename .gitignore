@@ -14,7 +14,6 @@ ENV/
 *.onnx
 *.h5
 *.pb
-best.pt
 
 # 환경 변수
 .env
@@ -27,6 +26,7 @@ best.pt
 *.zip
 data/raw/
 data/processed/
+!data/oliveyoung/*.csv
 
 # 로그
 *.log
